@@ -1,7 +1,7 @@
 # visualization
 
 > 一款基于Vue的可视化组件
-> A useful visual component based on vue
+A useful visual component based on vue
 
 ## Build Setup
 
