@@ -1,6 +1,6 @@
 <template>
   <div class="login-wrapper">
-    <span class="login-title">在线图表制作系统</span>
+    <span class="login-title">在线图表制作</span>
     <div class="login-form">
       <el-form :model="loginForm" status-icon :rules="loginRules" ref="loginForm" label-width="100px">
         <el-form-item label="账号" prop="userName">
@@ -18,42 +18,48 @@
 </template>
 
 <script>
-  export default{
-    data() {
-      return {
-        loginForm: {
-          userName: '',
-          password: ''
-        },
-        loginRules: {
-          userName: [
-            { required: true, message: '请输入用户名', trigger: 'blur' }
-          ],
-          password: [
-            { required: true, message: '请输入密码', trigger: 'blur' }
-          ]
-        }
-      }
-    },
-    methods:{
-      submitForm(formName) {
-        console.log(formName)
-        var self = this
-        self.$refs[formName].validate((valid)=>{
-          if (valid) {
-            localStorage.setItem('the_user',self.loginForm.username)
-            self.$router.push('/upload')
-          } else {
-            console.log('error submit!')
-            return false
-          }
-        })
+export default{
+  data () {
+    return {
+      loginForm: {
+        userName: '',
+        password: ''
+      },
+      loginRules: {
+        userName: [
+          { required: true, message: '请输入用户名', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, message: '请输入密码', trigger: 'blur' }
+        ]
       }
     }
+  },
+  methods: {
+    submitForm (formName) {
+      console.log(formName)
+      var self = this
+      self.$refs[formName].validate((valid) => {
+        if (valid) {
+          localStorage.setItem('the_user', self.loginForm.username)
+          self.$router.push('/upload')
+        } else {
+          console.log('error submit!')
+          return false
+        }
+      })
+    }
   }
+}
 </script>
 
 <style>
+  body{
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
   .login-wrapper {
     position: relative;
     background-color: bisque;
@@ -64,12 +70,10 @@
   }
   .login-title {
     font-size: 20px;
-
   }
   .login-form {
     width: 400px;
     height: 300px;
-    margin: 300px auto;
+    margin: 0 auto;
   }
 </style>
-
