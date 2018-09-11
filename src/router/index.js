@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import home from '@/components/view/Home'
 
 Vue.use(Router)
 
@@ -9,21 +9,21 @@ export default new Router({
     path: '/',
     redirect: '/login'
   }, {
-    path: '/',
-    name: 'HelloWorld',
-    component: HelloWorld,
+    path: '/home',
+    name: 'home',
+    component: home,
     children: [{
       path: '/upload',
       name: 'upload',
-      component: HelloWorld
+      component: home
     }, {
-      path: '/chart',
-      name: 'chart',
-      component: HelloWorld
+      path: '/table2chart',
+      name: 'table2chart',
+      component: home
     }, {
       path: '/other',
       name: 'other',
-      component: HelloWorld
+      component: home
     }]
   }, {
     path: '/login',
