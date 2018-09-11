@@ -6,21 +6,15 @@
     </div>
     <div class="user-info">
       <i></i>
-      <el-dropdown>
-        <el-dropdown-menu v-for="item in menus" :key="item.index" slot="dropdown">
-          <el-dropdown-item>{{item.name}}</el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'header',
   data () {
     return {
-      menus: [{
+      menu: [{
         name: '退出登录',
         index: '1'
       }, {

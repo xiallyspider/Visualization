@@ -3,7 +3,7 @@
     <v-head></v-head>
     <v-sidebar></v-sidebar>
     <div class="content-wrapper">
-
+      <transition name="move" mode="out-in"><router-view></router-view></transition>
     </div>
   </div>
 </template>
@@ -29,5 +29,6 @@ export default {
   height: calc(100% - 60px);
   width: calc(100% - 240px);
   right: 0px;
+  overflow: hidden;
 }
 </style>

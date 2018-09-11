@@ -1,6 +1,6 @@
 <template>
   <div class="side-bar">
-    <el-menu  
+    <el-menu
     :default-active="onRoutes"
     class="el-menu-a"
     background-color="#545c64"
@@ -29,10 +29,6 @@ export default {
   data () {
     return {
       menu: [{
-        icon: 'el-icon-star-on',
-        index: 'home',
-        name: '首页'
-      }, {
         icon: 'el-icon-menu',
         index: 'upload',
         name: '数据导入'

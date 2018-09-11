@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import home from '@/components/view/Home'
 
 Vue.use(Router)
 
@@ -11,19 +10,19 @@ export default new Router({
   }, {
     path: '/home',
     name: 'home',
-    component: home,
+    component: resolve => require(['../components/view/Home.vue'], resolve),
     children: [{
       path: '/upload',
       name: 'upload',
-      component: home
+      component: resolve => require(['../components/view/Upload.vue'], resolve)
     }, {
       path: '/table2chart',
       name: 'table2chart',
-      component: home
+      component: resolve => require(['../components/view/Table2Chart.vue'], resolve)
     }, {
       path: '/other',
       name: 'other',
-      component: home
+      component: resolve => require(['../components/view/Other.vue'], resolve)
     }]
   }, {
     path: '/login',
