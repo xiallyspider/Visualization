@@ -5,7 +5,7 @@
     class="el-menu-a"
     background-color="#545c64"
     text-color="#fff"
-    active-text-color="#ffd04b"
+    active-text-color="#1296db"
     unique-opened router>
       <template v-for="item in menu">
         <el-menu-item :key=item.index :index=item.index>

@@ -1,19 +1,17 @@
 <template>
   <div class="upload-wrapper">
     <div class="upload-box">
-      <el-button type="primary" plain @click="uploadFile" size="small">excel上传</el-button>
-      <el-button type="primary" plain @click="uploadFile" size="small">文档上传</el-button>
-      <el-button type="primary" plain @click="uploadFile" size="small">图片上传</el-button>
+     <input calss="upload-input" ref="uploadInput" @change="uploadChange" type="file" accept=".xlsx" >
+     <span class="upload-btn" @click="uploadClicked">上传excel</span>
     </div>
     <div class="content-box">
       <el-card class="box-card">
-        <div v-for="o in 4" :key="o" class="text item">
-          {{'列表内容 ' + o }}
+        <div class="text item">
         </div>
       </el-card>
     </div>
     <div class="export-box">
-       <el-button type="primary" @click="uploadFile" size="small">下载</el-button>
+       <el-button type="primary" @click="downloadFile" size="small">下载</el-button>
     </div>
   </div>
 </template>
@@ -26,16 +24,36 @@ export default {
     }
   },
   methods: {
-    readWorkBookFromLocalFile (file, callback) {
+    readWorkbookFromLocalFile (file) {
+      var self = this
       var reader = new FileReader()
-      reader.onload = function (e) {
+      reader.onloadend = function (e) {
         var data = e.target.reault
         var workbook = XLSX.read(data, {type: 'array'})
-        if (callback) callback(workbook)
+        self.readWorkbook(workbook)
       }
+      reader.readAsBinaryString(file)
     },
-    uploadFile () {
+    readWorkbook (workbook) {
+      console.log('read of the workbook')
+      console.log(workbook)
+    },
+    downloadFile () {
       console.log(this.$refs.inputFile)
+    },
+    uploadClicked () {
+      this.$refs.uploadInput.click()
+    },
+    uploadChange (e) {
+      var files = e.target.files
+      if (files.length === 0) return
+      var f = files[0]
+      if (!/\.xlsx$/g.test(f.name)) {
+        alert('仅支持读取xlsx格式！')
+        return
+      }
+      console.log(files)
+      this.readWorkbookFromLocalFile(f)
     }
   }
 }
@@ -68,6 +86,25 @@ export default {
   margin-top: 20px;
   width: 120px;
   margin-left: 20px
+}
+.upload-box input {
+  width: 120px;
+  display: none;
+}
+.upload-btn {
+  border: 1px solid #1296db;
+  border-radius: 4px;
+  width: 120px;
+  margin-left: 40px;
+  height: 30px;
+  display: block;
+  line-height: 30px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+.upload-btn:hover {
+  background-color: #1296db;
+  color: #FFF;
 }
 .el-card {
   height: calc(100% - 20px);
