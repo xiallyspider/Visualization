@@ -1,12 +1,27 @@
 <template>
   <div class="upload-wrapper">
     <div class="upload-box">
-     <input calss="upload-input" ref="uploadInput" @change="uploadChange" type="file" accept=".xlsx" >
-     <span class="upload-btn" @click="uploadClicked">上传excel</span>
+      <el-upload
+        ref="upload"
+        action="/wm/upload/"
+        :show-file-list="false"
+        accept=".xlsx"
+        :multiple="isMultiple"
+        :on-change="readExcel"
+        :auto-upload="false">
+      <el-button
+          slot="trigger"
+          icon="el-icon-upload"
+          size="small"
+          type="primary">
+        上传文件
+      </el-button>
+      <p>只支持.xlsx格式文件，表格内容可编辑</p>
+    </el-upload>
     </div>
     <div class="content-box">
       <el-card class="box-card">
-        <div class="text item">
+        <div class="table-box" v-html="tableHtml" contenteditable>
         </div>
       </el-card>
     </div>
@@ -21,39 +36,73 @@ import XLSX from 'xlsx'
 export default {
   data () {
     return {
+      isMultiple: false,
+      tableHtml: '',
+      tableJson: {},
+      tableName: ''
     }
   },
   methods: {
-    readWorkbookFromLocalFile (file) {
+    readExcel (file) {
       var self = this
       var reader = new FileReader()
-      reader.onloadend = function (e) {
-        var data = e.target.reault
-        var workbook = XLSX.read(data, {type: 'array'})
-        self.readWorkbook(workbook)
+      reader.onload = (file) => {
+        var data = file.target.result
+        var workBook = XLSX.read(data, {type: 'binary'})
+        var sheetNames = workBook.SheetNames
+        self.tableName = sheetNames[0]
+        var worksheet = workBook.Sheets[sheetNames[0]]
+        var csv = XLSX.utils.sheet_to_csv(worksheet)
+        self.tableHtml = self.csv2table(csv)
       }
-      reader.readAsBinaryString(file)
-    },
-    readWorkbook (workbook) {
-      console.log('read of the workbook')
-      console.log(workbook)
+      reader.readAsBinaryString(file.raw)
     },
     downloadFile () {
-      console.log(this.$refs.inputFile)
+      var aoa = this.jsonToAoA(this.tableJson)
     },
-    uploadClicked () {
-      this.$refs.uploadInput.click()
+    csv2table (csv) {
+      var html = '<table>'
+      var rows = csv.split('\n')
+      rows.pop()
+      rows.forEach((row, idx) => {
+        var columns = row.split(',')
+        html += '<tr>'
+        columns.forEach((column) => {
+          html += '<td>' + column + '</td>'
+        })
+        html += '</tr>'
+      })
+      html += '</table>'
+      return html
     },
-    uploadChange (e) {
-      var files = e.target.files
-      if (files.length === 0) return
-      var f = files[0]
-      if (!/\.xlsx$/g.test(f.name)) {
-        alert('仅支持读取xlsx格式！')
-        return
-      }
-      console.log(files)
-      this.readWorkbookFromLocalFile(f)
+    table2csv (table) {
+      // var csv = []
+      // $(table).find('tr').each(function() {
+      //   var temp = []
+      //   $(this).find('td').each(function() {
+      //     temp.push($(this).html())
+      //   })
+      //   temp.shift()
+      //   csv.push(temp.join(','))
+      // })
+      // csv.shift()
+      // return csv.join('\n')
+    },
+    csv2sheet (csv) {
+      var sheet = {}
+      csv = csv.split('\n')
+      csv.forEach((row, i) => {
+        row = row.split(',')
+        if (i === 0) sheet['!ref'] = 'A1:' + String.fromCharCode(65 + row.length - 1) + (csv.length - 1)
+        row.forEach((col, j) => {
+          sheet[String.fromCharCode(65 + j) + (i + 1)] = {v: col}
+        })
+      })
+      return sheet
+    },
+    jsonToAoA () {
+      var aoa = []
+      return aoa
     }
   }
 }
@@ -75,6 +124,15 @@ export default {
   margin-left: 200px;
   padding: 0 20px;
 }
+.table-box table{
+  table-layout: fixed;
+  border-collapse: collapse;
+  empty-cells: hide;
+}
+.table-box table td {
+  border: 1px solid #000;
+  height: 25px;
+}
 .export-box {
   height: 100%;
   width: 200px;
@@ -82,29 +140,8 @@ export default {
   top: 0px;
   right: 0px;
 }
-.upload-box .el-button {
-  margin-top: 20px;
-  width: 120px;
-  margin-left: 20px
-}
-.upload-box input {
-  width: 120px;
-  display: none;
-}
-.upload-btn {
-  border: 1px solid #1296db;
-  border-radius: 4px;
-  width: 120px;
-  margin-left: 40px;
-  height: 30px;
-  display: block;
-  line-height: 30px;
-  cursor: pointer;
-  margin-top: 20px;
-}
-.upload-btn:hover {
-  background-color: #1296db;
-  color: #FFF;
+.el-upload p {
+  font-size: 10px;
 }
 .el-card {
   height: calc(100% - 20px);
