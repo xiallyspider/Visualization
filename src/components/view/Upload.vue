@@ -21,7 +21,7 @@
     </div>
     <div class="content-box">
       <el-card class="box-card">
-        <div class="table-box" v-html="tableHtml" contenteditable>
+        <div class="table-box" v-html="tableHtml" ref="tableContent" contenteditable>
         </div>
       </el-card>
     </div>
@@ -58,7 +58,8 @@ export default {
       reader.readAsBinaryString(file.raw)
     },
     downloadFile () {
-      var aoa = this.jsonToAoA(this.tableJson)
+      var sheet = XLSX.utils.table_to_sheet(this.$refs.tableContent)
+      this.openDownloadDialog(this.sheet2blob(sheet), this.tableName + '.xlsx')
     },
     csv2table (csv) {
       var html = '<table>'
@@ -75,34 +76,45 @@ export default {
       html += '</table>'
       return html
     },
-    table2csv (table) {
-      // var csv = []
-      // $(table).find('tr').each(function() {
-      //   var temp = []
-      //   $(this).find('td').each(function() {
-      //     temp.push($(this).html())
-      //   })
-      //   temp.shift()
-      //   csv.push(temp.join(','))
-      // })
-      // csv.shift()
-      // return csv.join('\n')
+    openDownloadDialog (url, saveName) {
+      if (typeof url === 'object' && url instanceof Blob) {
+        url = URL.createObjectURL(url) // 创建blob地址
+      }
+      var aLink = document.createElement('a')
+      aLink.href = url
+      aLink.download = saveName || '' // HTML5新增的属性，指定保存文件名，可以不要后缀，注意，file:///模式下不会生效
+      var event
+      if (window.MouseEvent) {
+        event = new MouseEvent('click')
+      } else {
+        event = document.createEvent('MouseEvents')
+        event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null)
+      }
+      aLink.dispatchEvent(event)
     },
-    csv2sheet (csv) {
-      var sheet = {}
-      csv = csv.split('\n')
-      csv.forEach((row, i) => {
-        row = row.split(',')
-        if (i === 0) sheet['!ref'] = 'A1:' + String.fromCharCode(65 + row.length - 1) + (csv.length - 1)
-        row.forEach((col, j) => {
-          sheet[String.fromCharCode(65 + j) + (i + 1)] = {v: col}
-        })
-      })
-      return sheet
-    },
-    jsonToAoA () {
-      var aoa = []
-      return aoa
+    sheet2blob (sheet, sheetName) {
+      sheetName = sheetName || 'sheet1'
+      var workbook = {
+        SheetNames: [sheetName],
+        Sheets: {}
+      }
+      workbook.Sheets[sheetName] = sheet
+      // 生成excel的配置项
+      var wopts = {
+        bookType: 'xlsx', // 要生成的文件类型
+        bookSST: false, // 是否生成Shared String Table，官方解释是，如果开启生成速度会下降，但在低版本IOS设备上有更好的兼容性
+        type: 'binary'
+      }
+      var wbout = XLSX.write(workbook, wopts)
+      var blob = new Blob([s2ab(wbout)], {type: 'application/octet-stream'})
+      // 字符串转ArrayBuffer
+      function s2ab (s) {
+        var buf = new ArrayBuffer(s.length)
+        var view = new Uint8Array(buf)
+        for (var i = 0; i !== s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF
+        return buf
+      }
+      return blob
     }
   }
 }
