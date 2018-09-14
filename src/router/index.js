@@ -22,7 +22,7 @@ export default new Router({
     }, {
       path: '/other',
       name: 'other',
-      component: resolve => require(['../components/view/Other.vue'], resolve)
+      component: resolve => require(['../components/view/FlexLayout.vue'], resolve)
     }]
   }, {
     path: '/login',

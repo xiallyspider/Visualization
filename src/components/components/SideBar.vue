@@ -39,7 +39,7 @@ export default {
       }, {
         icon: 'el-icon-setting',
         index: 'other',
-        name: '其他'
+        name: 'Flex布局练习'
       }]
     }
   },
