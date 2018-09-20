@@ -9,7 +9,6 @@
   </div>
 </template>
 <script>
-  
 </script>
 
 <style>
@@ -24,7 +23,7 @@
   width: 50%;
   background-color: aquamarine;
   margin: 20px;
-  border-radius: 10px; 
+  border-radius: 10px;
 }
 .end {
   align-self: flex-end;
