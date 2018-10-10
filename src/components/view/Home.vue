@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import vHead from '../components/Header.vue'
-import vSidebar from '../components/Sidebar.vue'
+import vHead from '@/components/components/Header.vue'
+import vSidebar from '@/components/components/Sidebar.vue'
 export default {
   components: {
     vHead, vSidebar
