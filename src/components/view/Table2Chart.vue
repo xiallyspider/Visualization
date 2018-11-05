@@ -15,78 +15,74 @@
 </template>
 
 <script>
-import echarts from 'echarts'
+// import echarts from 'echarts'
 export default {
-    data () {
-        return {
-            tableData:[],
-            tableHtml:'',
-            selectedColumn : [],
-            selectedRow : [],
-            defaultSelectedColumn : [],
-            defaultSelectedRow : []
-        }
-    },
-    mounted: {
-
-    },
-    methods: {
-        initTable () {
-            this.tableData = this.getRandomTableData()
-            this.$nextTick(() => {
-                this.tableHtml = this.createdCheckeableTable()
-            })
-        },
-
-        //表格测试数据生成函数,无数据时测试使用
-        getRandomTableData () {
-            var result = []
-            for (var x = 0; x < 10; x++) {
-                var obj = {}
-                obj.name = "测试数据" + (x + 1)
-                for (var y = 2010; y < 2020; y++) {
-                    obj[y + '年'] = Math.floor(Math.random() * 10)
-                }
-                result.push(obj)
-            }
-            return result
-        },
-        createdCheckeableTable (data) {
-            var tableHtml = '<tr>'
-            for (x in data[0]) {
-                //<input type="checkbox" class="full-check"/>
-                tableHtml += x === 'name' ? '<td>指标名称<i class="icon-name-sort"></i></td>' : '<td calss="checkableText"><input type="checkbox" class="row-check"/>' + x + '<i class="icon-sort"></i></td>'
-            }
-            tableHtml += "</tr>"
-            data.forEach(function (item, index) {
-                tableHtml += "<tr>"
-                for (x in item) {
-                    tableHtml += x === 'name' ? '<td>' + item[x] + '<input type="checkbox" class="column-check"/></td>' : '<td>' + item[x] + '</td>'
-                }
-                tableHtml += "</tr>"
-            })
-            return tableHtml
-        },
-        initSelectedData: function () {
-            //默认选中的行和列数据初始化
-            var self = this
-            this.selectedColumn = []
-            this.selectedRow = []
-            this.defaultSelectedColumn = []
-            this.defaultSelectedRow = []
-            this.tableData.forEach(function (item, index) {
-                if (index < self.selectedRowNum) {
-                    self.selectedRow[index] = item.name
-                    self.defaultSelectedRow[index] = item.name
-                }
-            })
-            var tempArr = self.objToArr(self.tableData[0])
-            self.selectedColumn = JSON.parse(JSON.stringify(tempArr.slice(0, self.selectedColumnNum)))
-            self.defaultSelectedColumn = JSON.parse(JSON.stringify(tempArr.slice(0, self.selectedColumnNum)))
-            console.log(self.selectedRow)
-            console.log(self.selectedColumn)
-        }
+  data () {
+    return {
+      tableData: [],
+      tableHtml: '',
+      selectedColumn: [],
+      selectedRow: [],
+      defaultSelectedColumn: [],
+      defaultSelectedRow: []
     }
+  },
+  mounted: {
+  },
+  methods: {
+    initTable () {
+      this.tableData = this.getRandomTableData()
+      this.$nextTick(() => {
+        this.tableHtml = this.createdCheckeableTable()
+      })
+    },
+    // 表格测试数据生成函数,无数据时测试使用
+    getRandomTableData () {
+      var result = []
+      for (var x = 0; x < 10; x++) {
+        var obj = {}
+        obj.name = '测试数据' + (x + 1)
+        for (var y = 2010; y < 2020; y++) {
+          obj[y + '年'] = Math.floor(Math.random() * 10)
+        }
+        result.push(obj)
+      }
+      return result
+    },
+    createdCheckeableTable (data) {
+      var tableHtml = '<tr>'
+      for (var x in data[0]) {
+        // <input type='checkbox' class='full-check'/>
+        tableHtml += x === 'name' ? '<td>指标名称<i class="icon-name-sort"></i></td>' : '<td calss="checkableText"><input type="checkbox" class="row-check"/>' + x + '<i class="icon-sort"></i></td>'
+      }
+      tableHtml += '</tr>'
+      data.forEach(function (item, index) {
+        tableHtml += '<tr>'
+        for (var x in item) {
+          tableHtml += x === 'name' ? '<td>' + item[x] + '<input type="checkbox" class="column-check"/></td>' : '<td>' + item[x] + '</td>'
+        }
+        tableHtml += '</tr>'
+      })
+      return tableHtml
+    },
+    initSelectedData: function () {
+    // 默认选中的行和列数据初始化
+      var self = this
+      this.selectedColumn = []
+      this.selectedRow = []
+      this.defaultSelectedColumn = []
+      this.defaultSelectedRow = []
+      this.tableData.forEach(function (item, index) {
+        if (index < self.selectedRowNum) {
+          self.selectedRow[index] = item.name
+          self.defaultSelectedRow[index] = item.name
+        }
+      })
+      var tempArr = self.objToArr(self.tableData[0])
+      self.selectedColumn = JSON.parse(JSON.stringify(tempArr.slice(0, self.selectedColumnNum)))
+      self.defaultSelectedColumn = JSON.parse(JSON.stringify(tempArr.slice(0, self.selectedColumnNum)))
+    }
+  }
 }
 </script>
 

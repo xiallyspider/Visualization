@@ -3,9 +3,9 @@
     <el-menu
     :default-active="onRoutes"
     class="el-menu-a"
-    background-color="#545c64"
     text-color="#fff"
     active-text-color="#1296db"
+    size="mini"
     unique-opened router>
       <template v-for="item in menu">
         <el-menu-item :key=item.index :index=item.index>
@@ -55,7 +55,7 @@ export default {
     position: absolute;
     top: 60px;
     bottom: 0px;
-    background-color:#545c64;
+    /* background-color:#545c64; */
   }
   .el-menu-a {
     width: 240px;

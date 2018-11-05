@@ -1,16 +1,18 @@
 <template>
   <div class="header-wrapper">
     <div class="logo-wrapper">
-      <i></i>
+      <i>2F</i>
       <span>图表制作组件</span>
     </div>
-    <div class="other-info">
-      <i class="more"></i>
-      <i class="remind"></i>
-      <i class="about"></i>
+    <div class="operations-wrapper">
+      <span class="operation">{{operation1}}</span>
+      <span class="operation">{{operation2}}</span>
+      <span class="operation">{{operation3}}</span>
+      <span class="operation">{{operation4}}</span>
+      <span class="operation">{{operation5}}</span>
     </div>
-    <div class="user-info">
-      <i class="user-head"></i>
+    <div class="theme">
+      <i class="user-theme"></i>
     </div>
   </div>
 </template>
@@ -19,6 +21,11 @@
 export default {
   data () {
     return {
+      operation1: '简介',
+      operation2: 'Echarts',
+      operation3: 'Laeflet',
+      operation4: 'Three.js',
+      operation5: '技术实验室',
       menu: [{
         name: '退出登录',
         index: '1'
@@ -32,76 +39,36 @@ export default {
 </script>
 <style>
 .header-wrapper {
-  background-color: black;
-  height: 60px;
+  height: 50px;
+  border-bottom: 1px solid #eae7e7;
 }
 .logo-wrapper {
-  height: 40px;
-  width: 40px;
+  height: 50px;
+  width: 45px;
   position: absolute;
-  line-height: 60px;
-  margin-left: 10px;
-  margin-top: 10px;
+  line-height: 50px;
+  margin-left: 25%;
 }
 .logo-wrapper span {
   color: aliceblue;
 }
 .logo-wrapper i {
-  background-image: url(../../../static/img/logo.png);
-  background-size: 100% 100%;
+  background-color: black;
   height: 100%;
   width: 100%;
   display: inline-block;
-}
-.other-info {
-  height: 40px;
-  width: 120px;
-  display: inline-block;
-  position: absolute;
-  right: 120px;
-  top: 10px;
-}
-.other-info i {
-  height: 20px;
-  width: 20px;
-  display: inline-block;
-  margin-left: 15px;
-  margin-top: 10px;
-  background-size: 100% 100%;
+  color: aliceblue;
+  font-size: 15px;
   cursor: pointer;
 }
-.about {
-  background-image: url(../../../static/img/about.png);
+.operations-wrapper span {
+  line-height: 50px;
+  margin: 0 7px;
+  color: #a5a2a2;
+  border-bottom: 2px solid rgba(0,0,0,0);
 }
-.more {
-  background-image: url(../../../static/img/more.png);
-}
-.remind {
-  background-image: url(../../../static/img/remind.png);
-}
-.user-info {
-  height: 40px;
-  width: 40px;
-  line-height: 60px;
-  float: right;
-  margin-top: 10px;
-  margin-right: 50px;
-  cursor: pointer;
-  border: 1px solid;
-  border-radius: 50%;
-  -webkit-box-shadow: white 0px 0px 10px 1px;
-  box-shadow: white 0px 0px 20px 0px;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-.user-info i {
-  background-size: 100% 100%;
-  height: 100%;
-  width: 100%;
-  border-radius: 50%;
-  display: inline-block;
-}
-.user-head {
-  background-image: url(../../../static/img/user.png);
+.operations-wrapper span:hover {
+  color: #423e3e;
+  border-bottom: 2px solid #423e3e;
 }
 </style>

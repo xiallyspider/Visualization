@@ -1,7 +1,6 @@
 <template>
   <div class="home-page">
     <v-head></v-head>
-    <v-sidebar></v-sidebar>
     <div class="content-wrapper">
       <transition name="move" mode="out-in"><router-view></router-view></transition>
     </div>
@@ -10,10 +9,9 @@
 
 <script>
 import vHead from '../components/Header.vue'
-import vSidebar from '../components/Sidebar.vue'
 export default {
   components: {
-    vHead, vSidebar
+    vHead
   }
 }
 </script>
@@ -26,8 +24,8 @@ export default {
 .content-wrapper {
   background-color: #FFF;
   position: absolute;
-  height: calc(100% - 60px);
-  width: calc(100% - 240px);
+  height: calc(100% - 61px);
+  width: 100%;
   right: 0px;
   overflow: hidden;
 }

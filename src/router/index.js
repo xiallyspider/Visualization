@@ -6,7 +6,7 @@ Vue.use(Router)
 export default new Router({
   routes: [{
     path: '/',
-    redirect: '/login'
+    redirect: '/home'
   }, {
     path: '/home',
     name: 'home',
@@ -24,8 +24,5 @@ export default new Router({
       name: 'other',
       component: resolve => require(['../components/view/FlexLayout.vue'], resolve)
     }]
-  }, {
-    path: '/login',
-    component: resolve => require(['../components/Login.vue'], resolve)
   }]
 })

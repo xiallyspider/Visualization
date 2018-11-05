@@ -13,6 +13,7 @@
   "dependencies": {
     "echarts": "^4.2.0-rc.1",
     "element-ui": "^2.4.6",
+    "mapbox": "^1.0.0-beta10",
     "mockjs": "^1.0.1-beta3",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
