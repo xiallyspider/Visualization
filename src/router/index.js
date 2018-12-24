@@ -12,17 +12,13 @@ export default new Router({
     name: 'home',
     component: resolve => require(['../components/view/Home.vue'], resolve),
     children: [{
-      path: '/upload',
-      name: 'upload',
-      component: resolve => require(['../components/view/Upload.vue'], resolve)
+      path: '/echarts',
+      name: 'echarts',
+      component: resolve => require(['../components/view/Echarts.vue'], resolve)
     }, {
-      path: '/table2chart',
-      name: 'table2chart',
-      component: resolve => require(['../components/view/Table2Chart.vue'], resolve)
-    }, {
-      path: '/other',
-      name: 'other',
-      component: resolve => require(['../components/view/FlexLayout.vue'], resolve)
+      path: '/leaflet',
+      name: 'leaflet',
+      component: resolve => require(['../components/view/leaflet.vue'], resolve)
     }]
   }]
 })

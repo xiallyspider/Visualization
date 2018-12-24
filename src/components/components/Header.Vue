@@ -1,18 +1,16 @@
 <template>
   <div class="header-wrapper">
     <div class="logo-wrapper">
-      <i>2F</i>
-      <span>图表制作组件</span>
+      <div class="logo" :class="{'logo-unfold':isUnfold}" @click="unfoldLogo">{{logoTxt}}</div>
     </div>
-    <div class="operations-wrapper">
-      <span class="operation">{{operation1}}</span>
-      <span class="operation">{{operation2}}</span>
-      <span class="operation">{{operation3}}</span>
-      <span class="operation">{{operation4}}</span>
-      <span class="operation">{{operation5}}</span>
-    </div>
+    <ul class="operations-wrapper">
+      <router-link :to="item.path" v-for="item in operations" :key="item.name"><li class="operation">{{item.name}}</li></router-link>
+    </ul>
     <div class="theme">
       <i class="user-theme"></i>
+    </div>
+    <div class="loginGame" v-if="showLoginGame">
+    
     </div>
   </div>
 </template>
@@ -21,11 +19,16 @@
 export default {
   data () {
     return {
-      operation1: '简介',
-      operation2: 'Echarts',
-      operation3: 'Laeflet',
-      operation4: 'Three.js',
-      operation5: '技术实验室',
+      logoTxt: '2F',
+      operations: [
+        { name:'简介', path: '/home/leaflet'},
+        { name:'Echarts', path: '/home/Echarts'},
+        { name:'Laeflet', path: '/home/leaflet'},
+        { name:'Three.js', path: '/home/leaflet'},
+        { name:'技术实验室', path: '/home/leaflet'},
+      ],
+      isUnfold: false,
+      showLoginGame: false,
       menu: [{
         name: '退出登录',
         index: '1'
@@ -33,6 +36,23 @@ export default {
         name: '其他',
         index: '2'
       }]
+    }
+  },
+  methods: {
+    unfoldLogo () {
+      var self = this
+      this.isUnfold = !this.isUnfold
+      if( this.isUnfold ) {
+        this.logoTxt = ''
+        setTimeout(() => {
+          self.showLoginGame = true
+        }, 500)
+      } else {
+        this.showLoginGame = false
+        setTimeout(() => {
+          self.logoTxt = '2F'
+        }, 500)
+      }
     }
   }
 }
@@ -44,7 +64,7 @@ export default {
 }
 .logo-wrapper {
   height: 50px;
-  width: 45px;
+  width: 50px;
   position: absolute;
   line-height: 50px;
   margin-left: 25%;
@@ -52,23 +72,64 @@ export default {
 .logo-wrapper span {
   color: aliceblue;
 }
-.logo-wrapper i {
-  background-color: black;
+.logo{
+  transform: scale(1,1);
+  transition: 0.5s;
+  border-radius: 50%;  
+  position: absolute;
+  background-color: #226777;
   height: 100%;
   width: 100%;
   display: inline-block;
   color: aliceblue;
   font-size: 15px;
   cursor: pointer;
+  z-index: 1;
+  overflow: hidden;
 }
-.operations-wrapper span {
+.logo-unfold{
+  transform: scale(30,30);
+}
+.loginGame {
+  background-color: aliceblue;
+  height: 300px;
+  width: 300px;
+  position: absolute;
+  z-index: 2;
+  left: 50px;
+}
+.operations-wrapper{
+  display: inline-block;
+  position: relative;
+  height: 100%;
+  margin: 0;
+}
+.operation {
+  display: inline-block;
+  padding: 0 14px;
+  width: 80px;
   line-height: 50px;
-  margin: 0 7px;
-  color: #a5a2a2;
-  border-bottom: 2px solid rgba(0,0,0,0);
+  color: cadetblue;
 }
-.operations-wrapper span:hover {
+.operation:hover{
+  color: #393e46;
+  cursor: pointer;
+}
+.operation::after {
+    content: "";
+    display: block;
+    width: 0;
+    border-bottom: 2px solid #393e46;
+    transition: 0.2s all linear;
+}
+.operation:hover::after {
+    width: 100%;
+    left: 0;
+}
+.operation:hover ~ .operation::after {
+    left: 0;
+}
+/* .operations-wrapper span:hover {
   color: #423e3e;
-  border-bottom: 2px solid #423e3e;
-}
+} */
 </style>

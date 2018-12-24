@@ -1,6 +1,6 @@
 <template>
   <div class="home-page">
-    <v-head></v-head>
+    <!-- <v-head></v-head> -->
     <div class="content-wrapper">
       <transition name="move" mode="out-in"><router-view></router-view></transition>
     </div>
@@ -8,12 +8,12 @@
 </template>
 
 <script>
-import vHead from '../components/Header.vue'
-export default {
-  components: {
-    vHead
-  }
-}
+// import vHead from '@/components/components/Header.vue'
+// export default {
+//   components: {
+//     vHead
+//   }
+// }
 </script>
 
 <style>

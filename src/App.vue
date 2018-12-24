@@ -1,12 +1,17 @@
 <template>
   <div id="app">
+    <v-head></v-head>
     <router-view/>
   </div>
 </template>
 
 <script>
+import vHead from '@/components/components/Header.vue'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    vHead
+  }
 }
 </script>
 
@@ -15,6 +20,7 @@ body {
   margin: 0px;
   height: 100%;
   width: 100%;
+  user-select:none;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
