@@ -19,7 +19,7 @@ export default {
     return {
       currentDate: new Date().toLocaleDateString(),
       echartsDemo: [
-        { name: '表格图表转换', img: 'echarts/table2chart.jpg', index: '0' },
+        { name: '表格与图表转换', img: 'echarts/table2chart.jpg', index: '0' },
         { name: '地图聚合', img: 'echarts/clustermap.jpg', index: '1' },
         { name: '地图测量', img: 'echarts/map.jpg', index: '2' }
       ]
@@ -69,7 +69,6 @@ export default {
     display: table;
     content: "";
 }
-
 .clearfix:after {
     clear: both
 }
