@@ -9,9 +9,6 @@
     <div class="theme">
       <i class="user-theme"></i>
     </div>
-    <div class="loginGame" v-if="showLoginGame">
-    
-    </div>
   </div>
 </template>
 
@@ -21,14 +18,13 @@ export default {
     return {
       logoTxt: '2F',
       operations: [
-        { name:'简介', path: '/home/leaflet'},
-        { name:'Echarts', path: '/home/Echarts'},
-        { name:'Laeflet', path: '/home/leaflet'},
-        { name:'Three.js', path: '/home/leaflet'},
-        { name:'技术实验室', path: '/home/leaflet'},
+        {name: '简介', path: '/home'},
+        {name: 'Echarts', path: '/echarts'},
+        {name: 'Laeflet', path: '/leaflet'},
+        {name: 'Three.js', path: '/leaflet'},
+        {name: '技术实验室', path: '/leaflet'}
       ],
       isUnfold: false,
-      showLoginGame: false,
       menu: [{
         name: '退出登录',
         index: '1'
@@ -42,13 +38,9 @@ export default {
     unfoldLogo () {
       var self = this
       this.isUnfold = !this.isUnfold
-      if( this.isUnfold ) {
+      if (this.isUnfold) {
         this.logoTxt = ''
-        setTimeout(() => {
-          self.showLoginGame = true
-        }, 500)
       } else {
-        this.showLoginGame = false
         setTimeout(() => {
           self.logoTxt = '2F'
         }, 500)
@@ -75,7 +67,7 @@ export default {
 .logo{
   transform: scale(1,1);
   transition: 0.5s;
-  border-radius: 50%;  
+  border-radius: 50%;
   position: absolute;
   background-color: #226777;
   height: 100%;

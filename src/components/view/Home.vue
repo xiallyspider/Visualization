@@ -2,7 +2,9 @@
   <div class="home-page">
     <!-- <v-head></v-head> -->
     <div class="content-wrapper">
-      <transition name="move" mode="out-in"><router-view></router-view></transition>
+      <transition name="move" mode="out-in">
+        <router-view></router-view>
+      </transition>
     </div>
   </div>
 </template>

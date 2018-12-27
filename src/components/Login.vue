@@ -43,7 +43,7 @@ export default{
       self.$refs[formName].validate((valid) => {
         if (valid) {
           localStorage.setItem('the_user', self.loginForm.username)
-          self.$router.push('/home')
+          self.$router.push('/home/index')
         } else {
           console.log('error submit!')
           return false

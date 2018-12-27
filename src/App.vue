@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <v-head></v-head>
-    <router-view/>
+    <div class="content-wrapper animated fadeIn">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -33,5 +35,14 @@ body {
   height: 100%;
   width: 100%;
   min-width: 1366px;
+}
+.content-wrapper{
+  background-color: #FFF;
+  position: absolute;
+  height: calc(100% - 51px);
+  width: 100%;
+  right: 0px;
+  padding: 20px;
+  box-sizing: border-box;
 }
 </style>
