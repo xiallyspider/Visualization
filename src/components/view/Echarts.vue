@@ -14,15 +14,12 @@
 </template>
 
 <script>
+import config from '@/assets/dataConfig.js'
 export default {
   data () {
     return {
       currentDate: new Date().toLocaleDateString(),
-      echartsDemo: [
-        { name: '表格与图表转换', img: 'echarts/table2chart.jpg', index: '0' },
-        { name: '地图聚合', img: 'echarts/clustermap.jpg', index: '1' },
-        { name: '地图测量', img: 'echarts/map.jpg', index: '2' }
-      ]
+      echartsDemo: config.echartsItem
     }
   },
   methods: {
@@ -40,6 +37,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
 }
 .image{
   width: 100%;

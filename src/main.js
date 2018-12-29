@@ -8,7 +8,6 @@ import router from './router'
 import animated from 'animate.css' // npm install animate.css --save安装，再引入
 
 Vue.use(animated)
-
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 /* eslint-disable no-new */
