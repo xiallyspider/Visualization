@@ -1,24 +1,31 @@
+/**
+* 卡片组件
+*/
 <template>
-  <v-cards :items="items"></v-cards>
+  <div class="card-item-wrapper">
+    <el-card :body-style="{ padding: '0px' }" v-for="item in items" :key="item.index">
+      <img :src='require("@/assets/" + item.img)' class="image">
+      <div style="padding: 14px;">
+        <span>{{item.name}}</span>
+        <div class="bottom clearfix">
+          <time class="time">{{ item.createTime }}</time>
+           <router-link :to="item.path"><el-button type="text" class="button">详情</el-button></router-link>
+        </div>
+      </div>
+    </el-card>
+  </div>
 </template>
 
 <script>
-import config from '@/assets/dataConfig.js'
-import vCards from '@/components/components/CardBoard.vue'
 export default {
-  components: {
-    vCards
-  },
-  data () {
-    return {
-      items: config.echartsItem
-    }
+  props: {
+    items: Array
   }
 }
 </script>
 
 <style>
-.chart-index-wrapper{
+.card-item-wrapper{
   height: 100%;
   width: 100%;
   display: flex;

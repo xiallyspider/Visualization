@@ -4,7 +4,7 @@
       <div class="logo" :class="{'logo-unfold':isUnfold}" @click="unfoldLogo">{{logoTxt}}</div>
     </div>
     <ul class="operations-wrapper">
-      <router-link :to="item.path" v-for="item in operations" :key="item.name"><li class="operation">{{item.name}}</li></router-link>
+      <router-link :to="item.path" v-for="(item, key, index) in operations" :key="item.name" @click="changeIndex(index)" ><li :class="currentIndex == index ? 'operation operation-active':'operation'">{{item.name}}</li></router-link>
     </ul>
     <div class="theme">
       <i class="user-theme"></i>
@@ -22,8 +22,9 @@ export default {
         {name: 'Echarts', path: '/echarts'},
         {name: 'Laeflet', path: '/leaflet'},
         {name: 'Three.js', path: '/leaflet'},
-        {name: '技术实验室', path: '/leaflet'}
+        {name: '技术实验室', path: '/trysome'}
       ],
+      currentIndex: 0,
       isUnfold: false,
       menu: [{
         name: '退出登录',
@@ -45,6 +46,9 @@ export default {
           self.logoTxt = '2F'
         }, 500)
       }
+    },
+    changeIndex (index) {
+      this.currentIndex = index
     }
   }
 }
@@ -103,7 +107,7 @@ export default {
   line-height: 50px;
   color: cadetblue;
 }
-.operation:hover{
+.operation:hover, .operation-active{
   color: #393e46;
   cursor: pointer;
 }

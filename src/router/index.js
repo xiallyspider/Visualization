@@ -19,5 +19,9 @@ export default new Router({
     path: '/echarts',
     name: 'echarts',
     component: resolve => require(['../components/view/Echarts.vue'], resolve)
+  }, {
+    path: '/trysome',
+    name: 'trysome',
+    component: resolve => require(['../components/view/trySome.vue'], resolve)
   }]
 })
