@@ -5,7 +5,7 @@ var config = {
     { name: '电子地图测量', img: 'echarts/map.jpg', index: '2', path: '/MapMeasure', createTime: '2019年1月4日' }
   ],
   trysomeItem: [
-    { name: '地图展示类', img: 'trysome/amap.png', index: '0', path: '/trysome', createTime: '2019年1月4日' }
+    { name: '地图展示', img: 'trysome/amap.png', index: '0', path: '/itemdetail/map', createTime: '2019年1月4日' }
   ]
 }
 module.exports = config

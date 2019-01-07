@@ -1,6 +1,6 @@
 <template>
-  <div class="home-page">
-    <v-head></v-head>
+  <div class="page-wrapper2">
+    <v-detailheader></v-detailheader>
     <div class="content-wrapper">
       <transition name="move" mode="out-in">
         <router-view></router-view>
@@ -10,24 +10,24 @@
 </template>
 
 <script>
-import vHead from '@/components/components/Header.vue'
+import vDetailheader from '@/components/components/DetailHeader.vue'
 export default {
   components: {
-    vHead
+    vDetailheader
   }
 }
 </script>
 
 <style>
-.home-page{
+.page-wrapper2{
   height: 100%;
   width: 100%;
+  background-color: #1d5464;
 }
-.content-wrapper {
-  position: absolute;
-  height: calc(100% - 51px);
+.content-wrapper{
+  height: calc(100% - 50px);
   width: 100%;
-  right: 0px;
-  overflow: hidden;
+  position: absolute;
+  top: 50px;
 }
 </style>

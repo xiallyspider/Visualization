@@ -12,9 +12,11 @@
   },
   "dependencies": {
     "animate.css": "^3.7.0",
-    "echarts": "^4.2.0-rc.1",
+    "echarts": "^4.2.0-rc.2",
     "element-ui": "^2.4.6",
+    "leaflet": "^1.4.0",
     "mapbox": "^1.0.0-beta10",
+    "mapbox-gl": "^0.52.0",
     "mockjs": "^1.0.1-beta3",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",

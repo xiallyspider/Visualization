@@ -1,19 +1,14 @@
 <template>
   <div id="app">
-    <v-head></v-head>
-    <div class="content-wrapper animated fadeIn">
+    <div class="page-wrapper animated fadeIn">
       <router-view></router-view>
     </div>
   </div>
 </template>
 
 <script>
-import vHead from '@/components/components/Header.vue'
 export default {
-  name: 'App',
-  components: {
-    vHead
-  }
+  name: 'App'
 }
 </script>
 
@@ -36,13 +31,13 @@ body {
   width: 100%;
   min-width: 1366px;
 }
-.content-wrapper{
+.page-wrapper{
   background-color: #FFF;
   position: absolute;
-  height: calc(100% - 51px);
+  height: 100%;
   width: 100%;
   right: 0px;
-  padding: 20px;
+  padding: 0px;
   box-sizing: border-box;
 }
 </style>
