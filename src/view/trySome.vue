@@ -4,7 +4,7 @@
 
 <script>
 import config from '@/assets/dataConfig.js'
-import vCards from '@/components/components/CardBoard.vue'
+import vCards from '@/components/public/CardBoard.vue'
 export default {
   components: {
     vCards

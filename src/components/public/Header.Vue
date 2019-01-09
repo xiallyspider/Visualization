@@ -20,8 +20,8 @@ export default {
       operations: [
         {name: '简介', path: '/home'},
         {name: 'Echarts', path: '/echarts'},
-        {name: 'Laeflet', path: '/leaflet'},
-        {name: 'Three.js', path: '/leaflet'},
+        {name: 'Leaflet', path: '/leaflet'},
+        {name: 'Three.js', path: '/three'},
         {name: '技术实验室', path: '/trysome'}
       ],
       currentIndex: 0,

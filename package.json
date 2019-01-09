@@ -13,6 +13,7 @@
   "dependencies": {
     "animate.css": "^3.7.0",
     "echarts": "^4.2.0-rc.2",
+    "echarts-gl": "^1.1.1",
     "element-ui": "^2.4.6",
     "leaflet": "^1.4.0",
     "mapbox": "^1.0.0-beta10",

@@ -1,5 +1,6 @@
 <template>
-  <div style="height: calc(70% - 51px);width: 100%; margin: 7% 0px 5% 0;">
+  <div style="height: calc(70% - 51px);width: 100%; margin: 5% 0px 5% 0;">
+    <h3>{{mapTitle}}</h3>
     <v-mapbox 
     mapHeight="100%" 
     mapWidth="100%"
@@ -9,7 +10,7 @@
 </template>
 
 <script>
-import vMapbox from '@/components/components/mapbox.vue'
+import vMapbox from '@/components/mapbox/Mapbox.vue'
 export default {
   components: {
     vMapbox
@@ -17,12 +18,15 @@ export default {
   data () {
     return {
      center: [104, 30.6],
-     zoom: 10
+     zoom: 10,
+     mapTitle: 'mapbox-gl & Echarts-GL'
     }
   }
 }
 </script>
 
 <style>
-
+h3{
+  color:aliceblue;
+}
 </style>
