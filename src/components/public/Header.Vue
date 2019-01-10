@@ -4,7 +4,9 @@
       <div class="logo" :class="{'logo-unfold':isUnfold}" @click="unfoldLogo">{{logoTxt}}</div>
     </div>
     <ul class="operations-wrapper">
-      <router-link :to="item.path" v-for="(item, key, index) in operations" :key="item.name" @click="changeIndex(index)" ><li :class="currentIndex == index ? 'operation operation-active':'operation'">{{item.name}}</li></router-link>
+      <router-link :to="item.path" v-for="item in operations" :key="item.name" @click="changeIndex(item)" activeClass="operation-active" class="operation-color">
+        <li :class="{ operation:isOperation,  'operation-active': item.isActive }">{{item.name}}</li>
+      </router-link>
     </ul>
     <div class="theme">
       <i class="user-theme"></i>
@@ -18,13 +20,13 @@ export default {
     return {
       logoTxt: '2F',
       operations: [
-        {name: '简介', path: '/home'},
-        {name: 'Echarts', path: '/echarts'},
-        {name: 'Leaflet', path: '/leaflet'},
-        {name: 'Three.js', path: '/three'},
-        {name: '技术实验室', path: '/trysome'}
+        {name: '简介', path: '/intro', isActive: false},
+        {name: 'Echarts', path: '/echarts', isActive: false},
+        {name: 'Leaflet', path: '/leaflet', isActive: false},
+        {name: 'Three.js', path: '/three', isActive: false},
+        {name: '技术实验室', path: '/trysome', isActive: false}
       ],
-      currentIndex: 0,
+      isOperation: true,
       isUnfold: false,
       menu: [{
         name: '退出登录',
@@ -47,8 +49,14 @@ export default {
         }, 500)
       }
     },
-    changeIndex (index) {
-      this.currentIndex = index
+    changeIndex (item) {
+      this.operations.array.forEach(element => {
+        if(element.name == item.name) {
+          element.isActive = true
+        } else {
+          element.isActive = false
+        }
+      });
     }
   }
 }
@@ -57,6 +65,7 @@ export default {
 .header-wrapper {
   height: 50px;
   border-bottom: 1px solid #eae7e7;
+  box-shadow: #eae7e7 0px 0px 10px;
 }
 .logo-wrapper {
   height: 50px;
@@ -105,11 +114,14 @@ export default {
   padding: 0 14px;
   width: 80px;
   line-height: 50px;
+}
+.operation-color {
   color: cadetblue;
 }
 .operation:hover, .operation-active{
   color: #393e46;
   cursor: pointer;
+  font-weight: 600;
 }
 .operation::after {
     content: "";

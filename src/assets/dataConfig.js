@@ -11,6 +11,13 @@ var config = {
   ],
   trysomeItem: [
     { name: 'cesium', img: 'echarts/map.jpg', index: '0', path: '/itemdetail/cesium', createTime: '2019年1月4日' }
+  ],
+  spcEffact: [
+    {name:"三维视差效果",img:'effact/Parallax.jpg', index: '0', path: '/effact/parallax1', createTime: '2019年1月10日'},
+    {name:"普通视差效果",img:'effact/Parallax2.jpg', index: '1', path: '/effact/parallax2', createTime: '2019年1月10日'},
+    {name:"动画效果",img:'effact/animation.jpg', index: '2', path: '/effact/parallax1', createTime: '2019年1月10日'},
+    {name:"动画效果",img:'effact/animation2.jpg', index: '3', path: '/effact/parallax1', createTime: '2019年1月10日'},
+    {name:"更替视差效果",img:'effact/fixed-img.jpg', index: '4', path: '/effact/parallax1', createTime: '2019年1月10日'}
   ]
 }
 module.exports = config

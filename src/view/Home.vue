@@ -28,6 +28,7 @@ export default {
   height: calc(100% - 51px);
   width: 100%;
   right: 0px;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 </style>

@@ -6,12 +6,16 @@ Vue.use(Router)
 export default new Router({
   routes: [{
     path: '/',
-    redirect: '/home'
+    redirect: '/intro'
   }, {
     path: '/home',
     name: 'home',
     component: resolve => require(['../view/Home.vue'], resolve),
-    children: [{
+    children: [ {
+      path: '/intro',
+      name: 'intro',
+      component: resolve => require(['../view/Intro.vue'], resolve)
+    }, {
       path: '/leaflet',
       name: 'leaflet',
       component: resolve => require(['../view/leaflet.vue'], resolve)
