@@ -1,7 +1,7 @@
 <template>
   <div style="width:100%;display:flex;justify-content:center; align-items:center;flex-direction: column;">
     <div class="personal-intro-wrapper" :style="divMargin">
-      <img class="personal-intro-img"/>
+      <img class="personal-intro-img" :src='require("@/assets/effact/me-photo.jpg")'/>
       <div class="personal-intro-txt">
         <span></span>
       </div>

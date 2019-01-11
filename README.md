@@ -1,6 +1,7 @@
 # visualization
 
 > 基于vue的可视化练习
+> 演示地址：https://xiallyspider.github.io/Visualization/
 ## Build Setup
 
 ``` bash
@@ -18,3 +19,11 @@ npm run build --report
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## 用到的js库
+
+> elemnet-ui
+> leaflet.js
+> echarts & echarts-gl
+> parallax.js
+> cte.js
+> mo.js
