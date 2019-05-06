@@ -3,7 +3,7 @@
     <div class="personal-intro-wrapper" :style="divMargin">
       <img class="personal-intro-img" :src='require("@/assets/effact/me-photo.jpg")'/>
       <div class="personal-intro-txt">
-        <span></span>
+        <span v-html="introTxt"></span>
       </div>
     </div>
     <div class="spc-effact-wrapper">
@@ -25,6 +25,7 @@ import config from '@/assets/dataConfig.js'
 export default {
   data () {
     return {
+      introTxt: config.introTxt,
       spcEffactBanner: 'CSS & JS 特效',
       spcEffactList: config.spcEffact
     }
@@ -58,6 +59,9 @@ export default {
   width: calc(100% - 270px);
   height: 60%;
   background-color: #F1F2F4;
+  text-align: left;
+  text-indent: 20px;
+  padding: 20px;
 }
 .spc-effact-wrapper{
   height: 500px;
