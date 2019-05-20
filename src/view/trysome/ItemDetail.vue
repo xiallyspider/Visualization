@@ -18,7 +18,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .page-wrapper2{
   height: 100%;
   width: 100%;
@@ -29,5 +29,6 @@ export default {
   width: 100%;
   position: absolute;
   top: 50px;
+  overflow: hidden;
 }
 </style>

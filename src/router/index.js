@@ -52,6 +52,14 @@ export default new Router({
       path: 'cluster',
       name: 'cluster',
       component: resolve => require(['../view/trysome/leaflet/Cluster.vue'], resolve)
+    }, {
+      path: 'parallax_3d',
+      name: 'parallax_3d',
+      component: resolve => require(['../view/trysome/css/parallax_3d.vue'], resolve)
+    }, {
+      path: 'parallax_fixed',
+      name: 'parallax_fixed',
+      component: resolve => require(['../view/trysome/css/parallax_fixed.vue'], resolve)
     }]
   }]
 })

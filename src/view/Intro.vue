@@ -10,7 +10,7 @@
       <span class="spc-effact-banner">{{spcEffactBanner}}</span>
       <div class="spc-effact-list-wrapper">
         <div class="spc-effact-item" v-for="item in spcEffactList" :key="item.index" >
-          <img :src='require("@/assets/" + item.img)' class="spc-effact-image">
+          <img :src='require("@/assets/" + item.img)' class="spc-effact-image" @click="toCssView(item.path)">
           <div class="spc-effact-mask">
             <span class="spc-effact-name">{{item.name}}</span>
           </div>
@@ -38,6 +38,11 @@ export default {
       }
       return obj
     }
+  },
+  methods: {
+    toCssView(path) {
+      this.$router.push(path)
+    }
   }
 }
 </script>
@@ -53,11 +58,16 @@ export default {
 .personal-intro-img{
   height: 100%;
   width: 270px;
+  transition: 0.5s;
+  opacity: 0.8;
+}
+.personal-intro-img:hover{
+  opacity: 1;
 }
 .personal-intro-txt{
   display: inline-block;
   width: calc(100% - 270px);
-  height: 60%;
+  height: 65%;
   background-color: #F1F2F4;
   text-align: left;
   text-indent: 20px;
